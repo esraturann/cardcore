@@ -27,4 +27,18 @@ public class Card {
     public String getMaskedNumber() { return maskedNumber; }
     public BigDecimal getCardLimit() { return cardLimit; }
     public BigDecimal getAvailableLimit() { return availableLimit; }
+
+    public boolean authorize(BigDecimal amount) {
+        if (availableLimit.compareTo(amount) < 0) {
+            return false;
+        }
+        availableLimit = availableLimit.subtract(amount);
+        return true;
+    }
+
+
+
+
+
+
 }
