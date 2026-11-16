@@ -1,0 +1,25 @@
+services:
+  postgres:
+    image: postgres:17
+    container_name: cardcore-postgres
+    environment:
+      POSTGRES_USER: cardcore
+      POSTGRES_PASSWORD: cardcore123
+      POSTGRES_DB: authorization_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+  rabbitmq:
+    image: rabbitmq:4-management
+    container_name: cardcore-rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: cardcore
+      RABBITMQ_DEFAULT_PASS: cardcore123
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+
+volumes:
+  postgres-data:
